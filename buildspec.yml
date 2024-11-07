@@ -1,0 +1,47 @@
+# buildspec.yml
+version: 0.2
+
+env:
+  secrets-manager:
+    GITHUB_TOKEN: "allen-ms-github-token"  # GitHub token for secure access
+    PRIVATE_KEY: "allen-kp-sshkey"         # SSH private key for custom instance access
+  variables:
+    AWS_DEFAULT_REGION: "ap-southeast-1"   # AWS region for resources
+    AWS_ACCOUNT_ID: "642588679360"         # Your AWS account ID
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11                     # Use Amazon Corretto JDK 11
+    commands:
+      - echo "Installing Maven..."
+      - yum install -y maven               # Install Maven to build the Java application
+
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      
+      - echo "Setting up SSH access..."
+      - mkdir -p ~/.ssh
+      - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - ssh-keyscan -H 13.229.83.113 >> ~/.ssh/known_hosts
+
+  build:
+    commands:
+      - echo "Building the Java application with Maven..."
+      - mvn clean package                  # Build the application and generate the WAR file in the target directory
+      
+      - echo "Building the Docker image..."
+      - docker build -t my-java-app .      # Builds the Docker image from the Dockerfile in the root directory
+      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/my-java-app:latest
+
+  post_build:
+    commands:
+      - echo "Pushing the Docker image to ECR..."
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/my-java-app:latest
+
+artifacts:
+  files:
+    - '/*'
