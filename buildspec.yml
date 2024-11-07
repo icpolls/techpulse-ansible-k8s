@@ -37,8 +37,8 @@ phases:
       
       - echo "Building the Docker image..."
       - IMAGE_TAG=$(date +%Y%m%d%H%M%S)  # Create a unique tag based on timestamp
-      - docker build -t my-java-app:$IMAGE_TAG .
-      - docker tag my-java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:$IMAGE_TAG
+      - docker build -t java-app:$IMAGE_TAG .
+      - docker tag java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:$IMAGE_TAG
 
   post_build:
     commands:
@@ -55,7 +55,7 @@ phases:
 
       # Tag the new image as 'latest'
       - echo "Tagging the new image as 'latest'..."
-      - docker tag my-java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:latest
+      - docker tag java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:latest
 
       # Push both the unique tag and 'latest' tag to ECR
       - echo "Pushing the Docker images to ECR..."
