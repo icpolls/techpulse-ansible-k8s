@@ -36,12 +36,12 @@ phases:
       
       - echo "Building the Docker image..."
       - docker build -t my-java-app .      # Builds the Docker image from the Dockerfile in the root directory
-      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/my-java-app:latest
+      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/ms-solutions-techpulse-webapp:latest
 
   post_build:
     commands:
       - echo "Pushing the Docker image to ECR..."
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/my-java-app:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/ms-solutions-techpulse-webapp:latest
 
 artifacts:
   files:
