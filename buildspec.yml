@@ -24,11 +24,11 @@ phases:
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       
-      - echo "Setting up SSH access for custom server..."
+      - echo "Setting up SSH access..."
       - mkdir -p ~/.ssh
-      - echo -e "$PRIVATE_KEY" | sed 's/\\n/\n/g' > ~/.ssh/id_rsa
+      - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
       - chmod 600 ~/.ssh/id_rsa
-      - ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts  # Use variable for the host if IP changes frequently
+      - ssh-keyscan -H 13.229.83.113 >> ~/.ssh/known_hosts
 
   build:
     commands:
