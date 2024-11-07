@@ -14,8 +14,9 @@ phases:
     runtime-versions:
       java: corretto11                     # Use Amazon Corretto JDK 11
     commands:
-      - echo "Installing Maven..."
-      - yum install -y maven               # Install Maven to build the Java application
+      - echo "Updating package lists and installing Maven on Ubuntu..."
+      - sudo apt-get update                # Update the package list
+      - sudo apt-get install -y maven      # Install Maven on Ubuntu
 
   pre_build:
     commands:
