@@ -8,7 +8,7 @@ env:
   variables:
     AWS_DEFAULT_REGION: "ap-southeast-1"
     AWS_ACCOUNT_ID: "642588679360"
-    DOCKER_REPO: "ecr-test-repo"  # Define the Docker repository name once
+    DOCKER_REPO: "ecr-test-repo"
 
 phases:
   install:
@@ -16,7 +16,7 @@ phases:
       java: corretto11
     commands:
       - echo "Updating package lists and installing Maven on Ubuntu..."
-      - apt-get update                   # No sudo needed on CodeBuild
+      - apt-get update
       - apt-get install -y maven
 
   pre_build:
@@ -36,14 +36,32 @@ phases:
       - mvn clean package
       
       - echo "Building the Docker image..."
-      - docker build -t my-java-app .
-      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO
+      - IMAGE_TAG=$(date +%Y%m%d%H%M%S)  # Create a unique tag based on timestamp
+      - docker build -t my-java-app:$IMAGE_TAG .
+      - docker tag my-java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:$IMAGE_TAG
 
   post_build:
     commands:
-      - echo "Pushing the Docker image to ECR..."
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO
+      - echo "Checking for previous 'latest' tag in ECR..."
+      - LATEST_TAG=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:latest
+      
+      # Untag the previous 'latest' tag if it exists
+      - if aws ecr describe-images --repository-name $DOCKER_REPO --image-ids imageTag=latest --region $AWS_DEFAULT_REGION >/dev/null 2>&1; then
+          echo "Untagging previous 'latest' image...";
+          aws ecr batch-delete-image --repository-name $DOCKER_REPO --image-ids imageTag=latest --region $AWS_DEFAULT_REGION;
+        else
+          echo "No previous 'latest' tag found.";
+        fi
+
+      # Tag the new image as 'latest'
+      - echo "Tagging the new image as 'latest'..."
+      - docker tag my-java-app:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:latest
+
+      # Push both the unique tag and 'latest' tag to ECR
+      - echo "Pushing the Docker images to ECR..."
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO:$IMAGE_TAG
+      - docker push $LATEST_TAG
 
 artifacts:
   files:
-    - 'target/*.war'                     # Adjust artifact path to ensure only necessary files are saved
+    - 'target/*.war'
