@@ -3,46 +3,47 @@ version: 0.2
 
 env:
   secrets-manager:
-    GITHUB_TOKEN: "allen-ms-github-token"  # GitHub token for secure access
-    PRIVATE_KEY: "allen-kp-sshkey"         # SSH private key for custom instance access
+    GITHUB_TOKEN: "allen-ms-github-token"
+    PRIVATE_KEY: "allen-kp-sshkey"
   variables:
-    AWS_DEFAULT_REGION: "ap-southeast-1"   # AWS region for resources
-    AWS_ACCOUNT_ID: "642588679360"         # Your AWS account ID
+    AWS_DEFAULT_REGION: "ap-southeast-1"
+    AWS_ACCOUNT_ID: "642588679360"
+    DOCKER_REPO: "ecr-test-repo"  # Define the Docker repository name once
 
 phases:
   install:
     runtime-versions:
-      java: corretto11                     # Use Amazon Corretto JDK 11
+      java: corretto11
     commands:
       - echo "Updating package lists and installing Maven on Ubuntu..."
-      - sudo apt-get update                # Update the package list
-      - sudo apt-get install -y maven      # Install Maven on Ubuntu
+      - apt-get update                   # No sudo needed on CodeBuild
+      - apt-get install -y maven
 
   pre_build:
     commands:
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       
-      - echo "Setting up SSH access..."
+      - echo "Setting up SSH access for custom server..."
       - mkdir -p ~/.ssh
-      - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+      - echo -e "$PRIVATE_KEY" | sed 's/\\n/\n/g' > ~/.ssh/id_rsa
       - chmod 600 ~/.ssh/id_rsa
-      - ssh-keyscan -H 13.229.83.113 >> ~/.ssh/known_hosts
+      - ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts  # Use variable for the host if IP changes frequently
 
   build:
     commands:
       - echo "Building the Java application with Maven..."
-      - mvn clean package                  # Build the application and generate the WAR file in the target directory
+      - mvn clean package
       
       - echo "Building the Docker image..."
-      - docker build -t my-java-app .      # Builds the Docker image from the Dockerfile in the root directory
-      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/ms-solutions-techpulse-webapp:latest
+      - docker build -t my-java-app .
+      - docker tag my-java-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO
 
   post_build:
     commands:
       - echo "Pushing the Docker image to ECR..."
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/ms-solutions-techpulse-webapp:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$DOCKER_REPO
 
 artifacts:
   files:
-    - '/*'
+    - 'target/*.war'                     # Adjust artifact path to ensure only necessary files are saved
