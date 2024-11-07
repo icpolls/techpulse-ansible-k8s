@@ -7,13 +7,13 @@
  <packaging>war</packaging>
  <version>0.0.1-SNAPSHOT</version>
  
- <name>techvista-app</name>
+ <name>techpulse-app</name>
 
- <description>Techvista Project</description>
+ <description>Techpulse Project</description>
 
  <organization>
-  <name>Techvista Technologies</name>
-  <url>http://techvista.com/</url>
+  <name>Techpulse Technologies</name>
+  <url>http://techpulse.com/</url>
  </organization>
 
  <properties>
@@ -28,7 +28,7 @@
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   <sonar.projectKey>squ_955d9a93644a9acc06e2b35f4e8dc9432345f672</sonar.projectKey>
-  <sonar.projectName>techvista-app</sonar.projectName>
+  <sonar.projectName>techpulse-app</sonar.projectName>
         
  </properties>
 
@@ -99,21 +99,21 @@
  
  <distributionManagement>
      <repository>
-       <id>techvista-release</id>
-       <name>techvista-release</name>
-       <url>http://34.235.165.252:8081/repository/techvista-release/</url>
+       <id>techpulse-release</id>
+       <name>techpulse-release</name>
+       <url>http://34.235.165.252:8081/repository/techpulse-release/</url>
      </repository>
      
      <snapshotRepository>
-       <id>techvista-snapshot</id>
-       <name>techvista-snapshot</name>
-       <url>http://34.235.165.252:8081/repository/techvista-snapshot/</url>
+       <id>techvpulse-snapshot</id>
+       <name>techpulse-snapshot</name>
+       <url>http://34.235.165.252:8081/repository/techpulse-snapshot/</url>
      </snapshotRepository>
      
  </distributionManagement>
  
  <build>
-  <finalName>techvista-app</finalName>
+  <finalName>techpulse-webapp</finalName>
   
   <plugins>
    <plugin>
