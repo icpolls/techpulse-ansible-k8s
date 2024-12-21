@@ -3,12 +3,12 @@ version: 0.2
 
 env:
   secrets-manager:
-    GITHUB_TOKEN: "allen-ms-github-token"
-    PRIVATE_KEY: "allen-kp-sshkey"
+    GITHUB_TOKEN: "github-token-secret"
+    PRIVATE_KEY: "private-key-secret"
   variables:
     AWS_DEFAULT_REGION: "ap-southeast-1"
-    AWS_ACCOUNT_ID: "642588679360"
-    DOCKER_REPO: "ms-solutions-techpulse-webapp"
+    AWS_ACCOUNT_ID: "861276101438"
+    DOCKER_REPO: "anebota/icpolls-docker-hub"
 
 phases:
   install:
@@ -28,7 +28,7 @@ phases:
       - mkdir -p ~/.ssh
       - echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
       - chmod 600 ~/.ssh/id_rsa
-      - ssh-keyscan -H 13.250.100.56 >> ~/.ssh/known_hosts
+      - ssh-keyscan -H 47.129.154.221 >> ~/.ssh/known_hosts
 
   build:
     commands:
