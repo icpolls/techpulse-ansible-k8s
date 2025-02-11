@@ -23,11 +23,11 @@
   <junit.version>4.11</junit.version>
   <log4j.version>1.2.17</log4j.version>
   <sonar.host.url>http://52.77.220.116:9000</sonar.host.url>
-  <sonar.login>admin</sonar.login>
-  <sonar.password>Sonar-sonar@123THG</sonar.password>
+  <sonar.login>allen</sonar.login>
+  <sonar.password>Allen@123HGY</sonar.password>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  <sonar.projectKey>squ_02bc7b5dd9fa0642d170da975de4f07be25dfea7</sonar.projectKey>
+  <sonar.projectKey>squ_0eeafd2ae25c4289886900535325c9fa1433699b</sonar.projectKey>
   <sonar.projectName>techpulse-app</sonar.projectName>
         
  </properties>
