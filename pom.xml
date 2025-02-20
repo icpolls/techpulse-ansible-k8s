@@ -27,7 +27,7 @@
   <sonar.password>Mby-uytr-!@#$BVC1</sonar.password>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  <sonar.projectKey>squ_7f970e74def1aff51f9bd836e0496a498992cee9</sonar.projectKey>
+  <sonar.projectKey>squ_4f23678656ceee5c19736d7aee4cbabe8bd2c89f</sonar.projectKey>
   <sonar.projectName>sweetflo-project</sonar.projectName>
         
  </properties>
