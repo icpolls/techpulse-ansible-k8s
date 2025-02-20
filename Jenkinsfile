@@ -1,12 +1,12 @@
 pipeline {
-    agent { label 'agent1' }  // Replace 'wsl-agent' with the label of your agent
+    agent { label 'Agent1' }  // Replace 'wsl-agent' with the label of your agent
 
     environment {
-        GITHUB_REPO_URL = 'https://github.com/vlonje20/init-app.git'
+        GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
         BRANCH_NAME = 'main'  // Replace with your branch name if it's not 'main'
-        GITHUB_CREDENTIALS_ID = 'vin_github_cred'  // Replace with your Jenkins GitHub credentials ID
-        DOCKERHUB_CREDENTIALS_ID = 'jenkins-docker-cred'  // Replace with your Jenkins Docker Hub credentials ID
-        DOCKERHUB_REPO = 'vlonje20/devops-init-app'  // Replace with your Docker Hub repository
+        GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'  // Replace with your Jenkins GitHub credentials ID
+        DOCKERHUB_CREDENTIALS_ID = 'jenkins-dockerhub-creds'  // Replace with your Jenkins Docker Hub credentials ID
+        DOCKERHUB_REPO = 'anebota/jenkins-job-repo'  // Replace with your Docker Hub repository
     }
 
     stages {
