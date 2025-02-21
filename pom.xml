@@ -23,8 +23,8 @@
   <junit.version>4.11</junit.version>
   <log4j.version>1.2.17</log4j.version>
   <sonar.host.url>http://54.237.157.203:9000/</sonar.host.url>
-  <sonar.login>admin</sonar.login>
-  <sonar.password>Mby-uytr-!@#$BVC1</sonar.password>
+  <sonar.login>allen-user</sonar.login>
+  <sonar.password>Bakayoko@83123</sonar.password>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   <sonar.projectKey>squ_8f4aa1a7daf8bb9512f4f95f023a432cd7e89a15</sonar.projectKey>
