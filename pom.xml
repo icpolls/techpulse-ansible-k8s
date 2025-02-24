@@ -88,20 +88,6 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>cloud14-app</id>
-      <name>Cloud14 App Release</name>
-      <url>http://18.207.102.192:8087/repository/maven-releases/</url>
-    </repository>
-
-    <snapshotRepository>
-      <id>cloud14-webapp</id>
-      <name>Cloud14 App Snapshot</name>
-      <url>http://18.207.102.192:8087/repository/maven-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <build>
     <finalName>cloud14-app-${project.version}-${maven.build.timestamp}</finalName>
 
@@ -114,6 +100,21 @@
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>analyze-dependencies</id>
+            <goals>
+              <goal>analyze</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
