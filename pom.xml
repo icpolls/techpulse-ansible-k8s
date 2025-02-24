@@ -24,7 +24,7 @@
    <jetty.version>9.4.44.v20210927</jetty.version>
    
    <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
-   <sonar.token>${env.GITHUB_SONAR_TOKEN}</sonar.token>
+   <sonar.token>${env.SONAR_TOKEN}</sonar.token>
    <sonar.projectName>cloud14-app</sonar.projectName>
    
    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
