@@ -1,128 +1,147 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
- <modelVersion>4.0.0</modelVersion>
- 
- <groupId>com.mt</groupId>
- <artifactId>maven-web-application</artifactId>
- <packaging>war</packaging>
- <version>0.0.1-SNAPSHOT</version>
- 
- <name>cloud14-app</name>
- <description>cloud14-app icpolls project</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
 
- <organization>
+  <groupId>com.mt</groupId>
+  <artifactId>maven-web-application</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+
   <name>cloud14-app</name>
-  <url>http://cloud14.com</url>
- </organization>
+  <description>Cloud14-app ICPolls project</description>
 
- <properties>
-   <jdk.version>1.8</jdk.version>
-   <spring.version>5.1.2.RELEASE</spring.version>
-   <junit.version>4.11</junit.version>
-   <mockito.version>3.12.4</mockito.version>
-   <log4j.version>1.2.17</log4j.version>
-   <jetty.version>9.4.44.v20210927</jetty.version>
-   
-   <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
-   <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
-   <sonar.projectName>cloud14-app</sonar.projectName>
-   
-   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
- </properties>
+  <organization>
+    <name>Cloud14</name>
+    <url>http://cloud14.com</url>
+  </organization>
 
- <dependencies>
-  <dependency>
-   <groupId>org.json</groupId>
-   <artifactId>json</artifactId>
-   <version>20160212</version>
-  </dependency>
-  
-  <!-- Test dependencies -->
-  <dependency>
-   <groupId>junit</groupId>
-   <artifactId>junit</artifactId>
-   <version>${junit.version}</version>
-   <scope>test</scope>
-  </dependency>
-  
-  <dependency>
-   <groupId>org.mockito</groupId>
-   <artifactId>mockito-core</artifactId>
-   <version>${mockito.version}</version>
-   <scope>test</scope>
-  </dependency>
-  
-  <!-- Compile dependencies -->
-  <dependency>
-   <groupId>org.springframework</groupId>
-   <artifactId>spring-core</artifactId>
-   <version>${spring.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.springframework</groupId>
-   <artifactId>spring-web</artifactId>
-   <version>${spring.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.springframework</groupId>
-   <artifactId>spring-webmvc</artifactId>
-   <version>${spring.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.springframework</groupId>
-   <artifactId>spring-context</artifactId>
-   <version>${spring.version}</version>
-  </dependency>
-  
-  <!-- Provided dependencies -->
-  <dependency>
-   <groupId>javax.servlet</groupId>
-   <artifactId>javax.servlet-api</artifactId>
-   <version>3.1.0</version>
-   <scope>provided</scope>
-  </dependency>
- </dependencies>
- 
- <distributionManagement>
-     <repository>
-       <id>cloud14-app</id>
-       <name>cloud14-app-release</name>
-       <url>http://18.207.102.192:8087/repository/maven-releases/</url>
-     </repository>
-     
-     <snapshotRepository>
-       <id>cloud14-webapp</id>
-       <name>cloud14-app-v1.0.0-snapshot</name>
-       <url>http://18.207.102.192:8087/repository/maven-snapshots/</url>
-     </snapshotRepository>
- </distributionManagement>
- 
- <build>
-  <finalName>cloud14-app-${project.version}</finalName>
-  
-  <plugins>
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.3</version>
-    <configuration>
-     <source>${jdk.version}</source>
-     <target>${jdk.version}</target>
-    </configuration>
-   </plugin>
+  <properties>
+    <jdk.version>1.8</jdk.version>
+    <spring.version>5.1.2.RELEASE</spring.version>
+    <junit.version>4.11</junit.version>
+    <mockito.version>3.12.4</mockito.version>
+    <log4j.version>1.2.17</log4j.version>
+    <jetty.version>9.4.44.v20210927</jetty.version>
+    
+    <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
+    <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
+    <sonar.projectName>cloud14-app</sonar.projectName>
+    
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    
+    <!-- Timestamp for unique artifact naming -->
+    <maven.build.timestamp.format>yyyyMMdd.HHmmss</maven.build.timestamp.format>
+  </properties>
 
-   <plugin>
-    <groupId>org.eclipse.jetty</groupId>
-    <artifactId>jetty-maven-plugin</artifactId>
-    <version>${jetty.version}</version>
-    <configuration>
-     <scanIntervalSeconds>10</scanIntervalSeconds>
-     <webApp>
-      <contextPath>/maven-web-application</contextPath>
-     </webApp>
-    </configuration>
-   </plugin>
-  </plugins>
- </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20160212</version>
+    </dependency>
+    
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Compile dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Provided dependencies -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>cloud14-app</id>
+      <name>Cloud14 App Release</name>
+      <url>http://18.207.102.192:8087/repository/maven-releases/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>cloud14-webapp</id>
+      <name>Cloud14 App Snapshot</name>
+      <url>http://18.207.102.192:8087/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <!-- Generate a timestamped artifact -->
+    <finalName>cloud14-app-${project.version}-${maven.build.timestamp}</finalName>
+
+    <plugins>
+      <!-- Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Jetty Plugin -->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <configuration>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <webApp>
+            <contextPath>/maven-web-application</contextPath>
+          </webApp>
+        </configuration>
+      </plugin>
+
+      <!-- Resources Plugin to Enable Timestamp Injection -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <delimiters>${*}</delimiters>
+          <useBuildTimestamp>true</useBuildTimestamp>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
