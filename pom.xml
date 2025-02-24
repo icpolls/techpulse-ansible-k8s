@@ -88,13 +88,13 @@
      <repository>
        <id>cloud14-app</id>
        <name>cloud14-app-release</name>
-       <url>http://3.235.159.108:8081/repository/cloud14-app-release</url>
+       <url>http://18.207.102.192:8087/repository/maven-releases/</url>
      </repository>
      
      <snapshotRepository>
-       <id>allen-app-v1.0.0</id>
+       <id>cloud14-webapp</id>
        <name>cloud14-app-v1.0.0-snapshot</name>
-       <url>http://3.235.159.108:8081/repository/allen-app-v1.0.0-snapshot</url>
+       <url>http://18.207.102.192:8087/repository/maven-snapshots/</url>
      </snapshotRepository>
  </distributionManagement>
  
