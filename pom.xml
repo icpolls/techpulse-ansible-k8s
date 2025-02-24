@@ -23,7 +23,7 @@
    <log4j.version>1.2.17</log4j.version>
    <jetty.version>9.4.44.v20210927</jetty.version>
    
-   <sonar.host.url>http://18.209.227.243:9000</sonar.host.url>
+   <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
    <sonar.token>${env.GITHUB_SONAR_TOKEN}</sonar.token>
    <sonar.projectName>cloud14-app</sonar.projectName>
    
