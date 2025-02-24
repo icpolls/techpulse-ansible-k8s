@@ -99,7 +99,7 @@
  </distributionManagement>
  
  <build>
-  <finalName>cloud14-app</finalName>
+  <finalName>cloud14-app-${project.version}</finalName>
   
   <plugins>
    <plugin>
