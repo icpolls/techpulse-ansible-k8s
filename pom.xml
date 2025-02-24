@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+  
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mt</groupId>
@@ -18,21 +18,20 @@
   </organization>
 
   <properties>
-    <jdk.version>1.8</jdk.version>
-    <spring.version>5.1.2.RELEASE</spring.version>
-    <junit.version>4.11</junit.version>
-    <mockito.version>3.12.4</mockito.version>
-    <log4j.version>1.2.17</log4j.version>
-    <jetty.version>9.4.44.v20210927</jetty.version>
-
+    <jdk.version>11</jdk.version>
+    <spring.version>5.3.30</spring.version>
+    <junit.version>5.9.3</junit.version>
+    <mockito.version>5.2.0</mockito.version>
+    <log4j.version>2.20.0</log4j.version>
+    <jetty.version>10.0.15</jetty.version>
+    
     <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
     <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
     <sonar.projectName>cloud14-app</sonar.projectName>
-
+    
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <!-- Timestamp for unique artifact naming -->
+    
     <maven.build.timestamp.format>yyyyMMdd.HHmmss</maven.build.timestamp.format>
   </properties>
 
@@ -40,13 +39,13 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20160212</version>
+      <version>20230227</version>
     </dependency>
-
+    
     <!-- Test dependencies -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
@@ -84,7 +83,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
+      <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -104,22 +103,19 @@
   </distributionManagement>
 
   <build>
-    <!-- Generate a timestamped artifact -->
     <finalName>cloud14-app-${project.version}-${maven.build.timestamp}</finalName>
 
     <plugins>
-      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
         </configuration>
       </plugin>
 
-      <!-- Jetty Plugin -->
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -132,8 +128,15 @@
         </configuration>
       </plugin>
 
-      <!-- Resources Plugin to Enable Timestamp Injection -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version
+        <version>3.3.0</version>
+        <configuration>
+          <delimiters>${*}</delimiters>
+          <useBuildTimestamp>true</useBuildTimestamp>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
