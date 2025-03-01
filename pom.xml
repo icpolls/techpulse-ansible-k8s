@@ -1,167 +1,155 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ <modelVersion>4.0.0</modelVersion>
+ 
+ <groupId>com.mt</groupId>
+ <artifactId>maven-web-application</artifactId>
+ <packaging>war</packaging>
+ <version>0.0.1-SNAPSHOT</version>
+ 
+ <name>globe-app</name>
+
+ <description>globe-app</description>
+
+ <organization>
+  <name>Cloud14</name>
+  <url>http://cloud14.com/</url>
+ </organization>
+
+ <properties>
+
+  <jdk.version>1.8</jdk.version>
+  <spring.version>5.1.2.RELEASE</spring.version>
+  <junit.version>4.11</junit.version>
+  <log4j.version>1.2.17</log4j.version>        
+  sonar.host.url>http://44.192.106.44:8089/</sonar.host.url>
+  <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>        
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  <sonar.projectName>globe-app</sonar.projectName>
+        
+ </properties>
+
+
+ <dependencies>
   
-  <modelVersion>4.0.0</modelVersion>
+  <dependency>
+   <groupId>org.json</groupId>
+   <artifactId>json</artifactId>
+   <version>20160212</version>
+  </dependency>
+  
+  <!-- test dependencies -->
+  <dependency>
+   <groupId>junit</groupId>
+   <artifactId>junit</artifactId>
+   <version>3.8.1</version>
+   <scope>test</scope>
+  </dependency>
 
-  <groupId>com.mt</groupId>
-  <artifactId>maven-web-application</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>javax.servlet-api</artifactId>
+   <version>3.1.0</version>
+   <scope>provided</scope>
+  </dependency>
 
-  <name>cloud14-app</name>
-  <description>Cloud14-app ICPolls project</description>
+  <dependency>
+   <groupId>org.mockito</groupId>
+   <artifactId>mockito-core</artifactId>
+   <version>1.9.5</version>
+   <scope>test</scope>
+  </dependency>
 
-  <organization>
-    <name>Cloud14</name>
-    <url>http://cloud14.com</url>
-  </organization>
+  <!-- compile dependencies -->
 
-  <!-- Properties -->
-  <properties>
-    <jdk.version>11</jdk.version>
-    <spring.version>5.3.30</spring.version>
-    <junit.version>5.9.3</junit.version>
-    <mockito.version>5.2.0</mockito.version>
-    <log4j.version>2.20.0</log4j.version>
-    <jetty.version>10.0.15</jetty.version>
-    
-    <sonar.host.url>http://44.192.106.44:8089/</sonar.host.url>
-    <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
-    <sonar.projectName>cloud14-app</sonar.projectName>
-    
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
-    <maven.build.timestamp.format>yyyyMMdd.HHmmss</maven.build.timestamp.format>
-  </properties>
-
-  <!-- Dependencies -->
-  <dependencies>
-    <!-- JSON Library -->
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20230227</version>
-    </dependency>
-
-    <!-- Testing Dependencies -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Spring Dependencies -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-core</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+  <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-webmvc</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-context</artifactId>
+   <version>${spring.version}</version>
+  </dependency>
+  
+  <!-- provided dependencies -->
 
-    <!-- Servlet API -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+  <dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>javax.servlet-api</artifactId>
+   <version>3.1.0</version>
+   <scope>provided</scope>
+  </dependency>
+  
+ </dependencies>
+ 
+ <distributionManagement>
+     <repository>
+       <id>nexus</id>
+       <name>globe-app-release</name>
+       <url>http://44.214.120.14:8087/repository/globe-app-release/</url>
+     </repository>
+     
+     <snapshotRepository>
+       <id>nexus</id>
+       <name>globe-app-snapshot</name>
+       <url>http://44.214.120.14:8087/repository/globe-app-snapshot/</url>
+     </snapshotRepository>
+     
+ </distributionManagement>
+ 
+ <build>
+  <finalName>globe-app</finalName>
+  
+  <plugins>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.3</version>
+    <configuration>
+     <source>${jdk.version}</source>
+     <target>${jdk.version}</target>
+    </configuration>
+   </plugin>
 
-  <!-- Distribution Management -->
-  <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>globe-app-release</name>
-      <url>http://44.214.120.14:8087/repository/globe-app-release/</url>
-    </repository>
-    
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>globe-app-snapshot</name>
-      <url>http://44.214.120.14:8087/repository/globe-app-snapshot/</url>
-    </snapshotRepository>
-  </distributionManagement>       
+   <plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>9.2.11.v20150529</version>
+    <configuration>
+     <scanIntervalSeconds>10</scanIntervalSeconds>
+     <webApp>
+      <contextPath>/maven-web-application</contextPath>
+     </webApp>
+    </configuration>
+   </plugin>
 
-  <!-- Build Configuration -->
-  <build>
-    <finalName>globe-app</finalName>
-
-    <plugins>
-      <!-- Compiler Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>${jdk.version}</source>
-          <target>${jdk.version}</target>
-        </configuration>
-      </plugin>
-
-      <!-- Dependency Analysis Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.5.0</version>
-        <executions>
-          <execution>
-            <id>analyze-dependencies</id>
-            <goals>
-              <goal>analyze</goal>
-            </goals>
-            <phase>validate</phase>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Jetty Plugin -->
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>${jetty.version}</version>
-        <configuration>
-          <scanIntervalSeconds>10</scanIntervalSeconds>
-          <webApp>
-            <contextPath>/maven-web-application</contextPath>
-          </webApp>
-        </configuration>
-      </plugin>
-
-      <!-- Resources Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <delimiters>${*}</delimiters>
-          <useBuildTimestamp>true</useBuildTimestamp>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-eclipse-plugin</artifactId>
+    <version>2.9</version>
+    <configuration>
+     <downloadSources>true</downloadSources>
+     <downloadJavadocs>true</downloadJavadocs>
+     <wtpversion>2.0</wtpversion>
+     <wtpContextName>maven-web-application</wtpContextName>
+    </configuration>
+   </plugin>
+   
+</plugins>
+ </build>
+ 
+ 
 </project>
