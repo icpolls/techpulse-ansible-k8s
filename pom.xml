@@ -108,7 +108,7 @@
 
   <!-- Build Configuration -->
   <build>
-    <finalName>cloud14-app-${project.version}-${maven.build.timestamp}</finalName>
+    <finalName>globe-app</finalName>
 
     <plugins>
       <!-- Compiler Plugin -->
