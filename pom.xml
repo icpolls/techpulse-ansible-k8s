@@ -26,7 +26,7 @@
     <log4j.version>2.20.0</log4j.version>
     <jetty.version>10.0.15</jetty.version>
     
-    <sonar.host.url>http://44.192.106.44:8087/</sonar.host.url>
+    <sonar.host.url>http://44.192.106.44:8089/</sonar.host.url>
     <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
     <sonar.projectName>cloud14-app</sonar.projectName>
     
