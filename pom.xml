@@ -95,14 +95,14 @@
   <distributionManagement>
     <repository>
       <id>nexus</id>
-      <name>cloud14-app</name>
-      <url>http://44.214.120.14:8087/repository/cloud14-app/</url>
+      <name>globe-app-release</name>
+      <url>http://44.214.120.14:8087/repository/globe-app-release/</url>
     </repository>
     
     <snapshotRepository>
       <id>nexus</id>
-      <name>cloud14-webapp</name>
-      <url>http://44.214.120.14:8087/repository/cloud14-webapp/</url>
+      <name>globe-app-snapshot</name>
+      <url>http://44.214.120.14:8087/repository/globe-app-snapshot/</url>
     </snapshotRepository>
   </distributionManagement>       
 
