@@ -17,6 +17,7 @@
     <url>http://cloud14.com</url>
   </organization>
 
+  <!-- Properties -->
   <properties>
     <jdk.version>11</jdk.version>
     <spring.version>5.3.30</spring.version>
@@ -25,7 +26,7 @@
     <log4j.version>2.20.0</log4j.version>
     <jetty.version>10.0.15</jetty.version>
     
-    <sonar.host.url>http://44.200.197.89:8089/</sonar.host.url>
+    <sonar.host.url>http://44.192.106.44:8087/</sonar.host.url>
     <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>
     <sonar.projectName>cloud14-app</sonar.projectName>
     
@@ -35,14 +36,16 @@
     <maven.build.timestamp.format>yyyyMMdd.HHmmss</maven.build.timestamp.format>
   </properties>
 
+  <!-- Dependencies -->
   <dependencies>
+    <!-- JSON Library -->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20230227</version>
     </dependency>
-    
-    <!-- Test dependencies -->
+
+    <!-- Testing Dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -57,7 +60,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Compile dependencies -->
+    <!-- Spring Dependencies -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
@@ -79,7 +82,7 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- Provided dependencies -->
+    <!-- Servlet API -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -88,10 +91,27 @@
     </dependency>
   </dependencies>
 
+  <!-- Distribution Management -->
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>cloud14-app</name>
+      <url>http://44.214.120.14:8087/repository/cloud14-app/</url>
+    </repository>
+    
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>cloud14-webapp</name>
+      <url>http://44.214.120.14:8087/repository/cloud14-webapp/</url>
+    </snapshotRepository>
+  </distributionManagement>       
+
+  <!-- Build Configuration -->
   <build>
     <finalName>cloud14-app-${project.version}-${maven.build.timestamp}</finalName>
 
     <plugins>
+      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -102,6 +122,7 @@
         </configuration>
       </plugin>
 
+      <!-- Dependency Analysis Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -117,6 +138,7 @@
         </executions>
       </plugin>
 
+      <!-- Jetty Plugin -->
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -129,6 +151,7 @@
         </configuration>
       </plugin>
 
+      <!-- Resources Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -140,4 +163,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>
