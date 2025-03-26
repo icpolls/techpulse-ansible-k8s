@@ -23,7 +23,7 @@
   <junit.version>4.11</junit.version>
   <log4j.version>1.2.17</log4j.version>        
   sonar.host.url>http://52.221.202.121:8089</sonar.host.url>
-  <sonar.login>squ_a380512b4944a837673b0b9fa9ede22440a72407</sonar.login>        
+  <sonar.login>squ_8313075aaa972eee57d9dacc3c8e51281bca47ff</sonar.login>        
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   <sonar.projectName>globe-app</sonar.projectName>
