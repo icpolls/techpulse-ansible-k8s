@@ -114,7 +114,7 @@
  </distributionManagement>
 
  <build>
-  <finalName>cloud14-globe-app</finalName>
+  <finalName>cloud14-app</finalName>
   <plugins>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
