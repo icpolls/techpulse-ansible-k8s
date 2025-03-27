@@ -7,7 +7,7 @@
  <packaging>war</packaging>
  <version>0.0.2-SNAPSHOT</version>
  
- <name>globe-app</name>
+ <name>cloud14-globe-app</name>
  <description>globe-app</description>
  
  <organization>
@@ -22,10 +22,10 @@
   <log4j.version>2.20.0</log4j.version>
   <mockito.version>5.7.0</mockito.version>
   <sonar.host.url>http://52.221.202.121:8089</sonar.host.url>
-  <sonar.login>squ_8313075aaa972eee57d9dacc3c8e51281bca47ff</sonar.login>
+  <sonar.token>squ_8313075aaa972eee57d9dacc3c8e51281bca47ff</sonar.token>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  <sonar.projectName>globe-app</sonar.projectName>
+  <sonar.projectName>cloud14-globe-app</sonar.projectName>
  </properties>
 
  <dependencies>
