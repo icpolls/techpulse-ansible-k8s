@@ -103,18 +103,18 @@
  <distributionManagement>
   <repository>
    <id>nexus</id>
-   <name>globe-app-release</name>
-   <url>http://44.214.120.14:8087/repository/globe-app-release/</url>
+   <name>Cloud14-globe-app-release</name>
+   <url>http://54.254.163.208:8087/repository/cloud14-globe-app-release</url>
   </repository>
   <snapshotRepository>
    <id>nexus</id>
-   <name>globe-app-snapshot</name>
-   <url>http://44.214.120.14:8087/repository/globe-app-snapshot/</url>
+   <name>Cloud14-globe-app-snapshot</name>
+   <url>http://54.254.163.208:8087/repository/cloud14-globe-app-snapshot</url>
   </snapshotRepository>
  </distributionManagement>
 
  <build>
-  <finalName>globe-app</finalName>
+  <finalName>cloud14-globe-app</finalName>
   <plugins>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
