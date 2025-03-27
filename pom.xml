@@ -21,7 +21,7 @@
   <junit.version>5.9.2</junit.version>
   <log4j.version>2.20.0</log4j.version>
   <mockito.version>5.7.0</mockito.version>
-  <sonar.host.url>http://52.221.202.121:8089</sonar.host.url>
+  <sonar.host.url>http://52.221.196.216:8089</sonar.host.url>
   <sonar.token>squ_5aabfa823fbb19e01dbfc5cb1cfe0befa9fa2c7b</sonar.token>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
