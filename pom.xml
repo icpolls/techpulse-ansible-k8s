@@ -21,7 +21,7 @@
   <junit.version>5.9.2</junit.version>
   <log4j.version>2.20.0</log4j.version>
   <mockito.version>5.7.0</mockito.version>
-  <sonar.host.url>http://52.221.196.216:8089</sonar.host.url>
+  <sonar.host.url>http://18.142.47.17:8089</sonar.host.url>
   <sonar.token>squ_5aabfa823fbb19e01dbfc5cb1cfe0befa9fa2c7b</sonar.token>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -103,13 +103,13 @@
  <distributionManagement>
   <repository>
    <id>nexus</id>
-   <name>Cloud14-globe-app-release</name>
-   <url>http://54.254.163.208:8087/repository/cloud14-globe-app-release</url>
+   <name>Cloud14-app-release</name>
+   <url>http://18.143.74.231:8087/repository/cloud14-app-release</url>
   </repository>
   <snapshotRepository>
    <id>nexus</id>
-   <name>Cloud14-globe-app-snapshot</name>
-   <url>http://54.254.163.208:8087/repository/cloud14-globe-app-snapshot</url>
+   <name>Cloud14-app-snapshot</name>
+   <url>http://http://18.143.74.231:8087/repository/cloud14-app-snapshot</url>
   </snapshotRepository>
  </distributionManagement>
 
