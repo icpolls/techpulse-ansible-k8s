@@ -109,7 +109,7 @@
   <snapshotRepository>
    <id>nexus</id>
    <name>Cloud14-app-snapshot</name>
-   <url>http://http://18.143.74.231:8087/repository/cloud14-app-snapshot</url>
+   <url>http://18.143.74.231:8087/repository/cloud14-app-snapshot</url>
   </snapshotRepository>
  </distributionManagement>
 
