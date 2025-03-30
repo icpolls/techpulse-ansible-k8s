@@ -21,8 +21,8 @@
   <junit.version>5.9.2</junit.version>
   <log4j.version>2.20.0</log4j.version>
   <mockito.version>5.7.0</mockito.version>
-  <sonar.host.url>http://18.142.47.17:8089</sonar.host.url>
-  <sonar.token>squ_5aabfa823fbb19e01dbfc5cb1cfe0befa9fa2c7b</sonar.token>
+  <sonar.host.url>http://18.141.9.26:8089</sonar.host.url>
+  <sonar.token>squ_a2b478d11e6ce4ec50e45391d9ff1fc046829d89</sonar.token>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   <sonar.projectName>cloud14-app</sonar.projectName>
