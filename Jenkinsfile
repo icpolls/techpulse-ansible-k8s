@@ -1,44 +1,38 @@
 pipeline {
-    agent { label 'agent1' }  // Replace 'wsl-agent' with the label of your agent
-
+    agent { label 'Agent1' }
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
-        BRANCH_NAME = 'main'  // Replace with your branch name if it's not 'main'
-        GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'  // Replace with your Jenkins GitHub credentials ID
-        DOCKERHUB_CREDENTIALS_ID = 'jenkins-dockerhub-creds'  // Replace with your Jenkins Docker Hub credentials ID
-        DOCKERHUB_REPO = 'anebota/jenkins-job-repo'  // Replace with your Docker Hub repository
+        BRANCH_NAME = 'main'
+        GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'
+        DOCKERHUB_CREDENTIALS_ID = 'jenkins-dockerhub-creds'
+        DOCKERHUB_REPO = 'anebota/jenkins-job-repo'
     }
-
     stages {
         stage('Agent Details') {
             steps {
                 echo "Running on agent: ${env.NODE_NAME}"
-                sh 'uname -a'  // Print system information
-                sh 'whoami'    // Print the current user
+                sh 'uname -a'
+                sh 'whoami'
             }
         }
-
         stage('Clone Repository') {
             steps {
                 git branch: "${env.BRANCH_NAME}", url: "${env.GITHUB_REPO_URL}", credentialsId: "${env.GITHUB_CREDENTIALS_ID}"
             }
         }
-
         stage('Build') {
             steps {
-                sh 'mvn clean package'  // Simple Maven build
+                sh 'mvn clean package'  // Fixed: removed duplicate 'sh'
             }
         }
-
         stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker --version'  // Verify Docker installation
-                    sh "docker build -t ${env.DOCKERHUB_REPO}:latest ."  // Build Docker image
+                    sh 'docker --version'
+                    sh "docker build -t ${env.DOCKERHUB_REPO}:latest ."
                 }
             }
         }
-
         stage('Docker Push') {
             steps {
                 script {
@@ -50,21 +44,23 @@ pipeline {
                 }
             }
         }
-
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run --name dev-init-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"  // Run Docker container in detached mode
+                    // Add container cleanup before starting a new one to avoid conflicts
+                    sh 'docker stop dev-init-app || true'
+                    sh 'docker rm dev-init-app || true'
+                    sh "docker run --name dev-init-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"
                 }
             }
         }
     }
-
     post {
         always {
             echo 'Cleaning up Docker containers and images...'
-            sh 'docker rm $(docker ps -a -q) || true'
-            sh 'docker rmi $(docker images -q) || true'
+            // Safer cleanup commands that won't fail if no containers/images exist
+            sh 'docker container prune -f || true'
+            sh 'docker image prune -af || true'
         }
         success {
             echo 'Pipeline completed successfully!'
