@@ -1,10 +1,10 @@
 pipeline {
-    agent { label 'Agent1' }
+    agent { label 'agent1' }
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
         BRANCH_NAME = 'main'
         GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'
-        DOCKERHUB_CREDENTIALS_ID = 'jenkins-dockerhub-creds'
+        DOCKERHUB_CREDENTIALS_ID = 'dockerhub-PAT-creds'
         DOCKERHUB_REPO = 'anebota/jenkins-job-repo'
     }
     stages {
@@ -22,13 +22,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'  // Fixed: removed duplicate 'sh'
+                sh 'mvn clean package'
             }
         }
         stage('Docker Build') {
             steps {
                 script {
                     sh 'docker --version'
+                    // Echo the repo name to verify it's correctly formatted
+                    echo "Building Docker image: ${env.DOCKERHUB_REPO}:latest"
                     sh "docker build -t ${env.DOCKERHUB_REPO}:latest ."
                 }
             }
@@ -36,8 +38,10 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${env.DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    withCredentials([usernamePassword(credentialsId: "${env.DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PAT')]) {
+                        echo "Logging into Docker Hub as ${DOCKER_USERNAME}"
+                        // Using the newer recommended authentication approach
+                        sh 'echo $DOCKER_PAT | docker login -u $DOCKER_USERNAME --password-stdin'
                         sh "docker push ${env.DOCKERHUB_REPO}:latest"
                         sh 'docker logout'
                     }
@@ -47,7 +51,6 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Add container cleanup before starting a new one to avoid conflicts
                     sh 'docker stop dev-init-app || true'
                     sh 'docker rm dev-init-app || true'
                     sh "docker run --name dev-init-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"
@@ -58,7 +61,6 @@ pipeline {
     post {
         always {
             echo 'Cleaning up Docker containers and images...'
-            // Safer cleanup commands that won't fail if no containers/images exist
             sh 'docker container prune -f || true'
             sh 'docker image prune -af || true'
         }
