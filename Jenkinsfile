@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Agent1' }  // Replace 'wsl-agent' with the label of your agent
+    agent { label 'agent1' }  // Replace 'wsl-agent' with the label of your agent
 
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
