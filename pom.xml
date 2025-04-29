@@ -104,12 +104,12 @@
   <repository>
    <id>nexus</id>
    <name>Cloud14-app-release</name>
-   <url>http://18.141.137.241:8087/repository/cloud14-app-release</url>
+   <url>http://18.143.64.170:8081/repository/cloud14-app-release</url>
   </repository>
   <snapshotRepository>
    <id>nexus</id>
-   <name>Cloud14-app-snapshot</name>
-   <url>http://18.141.137.241:8087/repository/cloud14-app-snapshot</url>
+   <name>cloud14-app-snapshot</name>
+   <url>http://18.143.64.170:8081/repository/cloud14-app-snapshot</url>
   </snapshotRepository>
  </distributionManagement>
 
