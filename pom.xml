@@ -8,11 +8,11 @@
  <version>0.0.2-SNAPSHOT</version>
  
  <name>cloud14-app</name>
- <description>cloud14-app</description>
+ <description>ms-app</description>
  
  <organization>
   <name>Cloud14</name>
-  <url>http://cloud14.com/</url>
+  <url>http://ms-solutions.com/</url>
  </organization>
  
  <properties>
@@ -21,11 +21,11 @@
   <junit.version>5.9.2</junit.version>
   <log4j.version>2.20.0</log4j.version>
   <mockito.version>5.7.0</mockito.version>
-  <sonar.host.url>http://13.215.202.200:9000/</sonar.host.url>
-  <sonar.token>squ_64d1404993efa71ed6a0d8e4e52f54e22bf5d22e</sonar.token>
+  <sonar.host.url>http://54.151.183.23:9005</sonar.host.url>
+  <sonar.token>squ_1a8018318ce57aebbd7f1ad82107fe19020a88de</sonar.token>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  <sonar.projectName>cloud14-app</sonar.projectName>
+  <sonar.projectName>ms-app</sonar.projectName>
  </properties>
 
  <dependencies>
@@ -114,7 +114,7 @@
  </distributionManagement>
 
  <build>
-  <finalName>cloud14-app</finalName>
+  <finalName>ms-app</finalName>
   <plugins>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
