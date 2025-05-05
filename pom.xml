@@ -104,7 +104,7 @@
   <repository>
    <id>nexus</id>
    <name>ms-app-release</name>
-   <url>http://54.169.147.221:8089/repository/ms-app-release/</url>
+   <url>http://54.169.147.221:8089/repository/ms-app-release</url>
   </repository>
   <snapshotRepository>
    <id>nexus</id>
