@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'agent1' }
+    agent { label 'node1' }
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
         BRANCH_NAME = 'main'
@@ -51,9 +51,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker stop dev-init-app || true'
-                    sh 'docker rm dev-init-app || true'
-                    sh "docker run --name dev-init-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"
+                    sh 'docker stop ms-app || true'
+                    sh 'docker rm ms-app || true'
+                    sh "docker run --name ms-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"
                 }
             }
         }
