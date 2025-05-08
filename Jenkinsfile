@@ -3,7 +3,7 @@ pipeline {
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
         BRANCH_NAME = 'main'
-        GITHUB_CREDENTIALS_ID = 'github-token'
+        GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'
         DOCKERHUB_CREDENTIALS_ID = 'dockerhub-PAT-creds'
         DOCKERHUB_REPO = 'anebota/jenkins-job-repo'
     }
