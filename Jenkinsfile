@@ -53,7 +53,7 @@ pipeline {
                 script {
                     sh 'docker stop ms-app || true'
                     sh 'docker rm ms-app || true'
-                    sh "docker run --name ms-app --rm -d -p 8383:8080 ${env.DOCKERHUB_REPO}:latest"
+                    sh "docker run --name ms-app --rm -d -p 8282:8080 ${env.DOCKERHUB_REPO}:latest"
                 }
             }
         }
