@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'node1' }
+    agent { label 'mss' }
     environment {
         GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
         BRANCH_NAME = 'main'
