@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'mss' }
     environment {
-        GITHUB_REPO_URL = 'https://github.com/anebota/techpulse.git'
+        GITHUB_REPO_URL = 'https://github.com/icpolls/techpulse-ansible-k8s.git'
         BRANCH_NAME = 'main'
         GITHUB_CREDENTIALS_ID = 'jenkins-github-creds'
         DOCKERHUB_CREDENTIALS_ID = 'dockerhub-PAT-creds'
